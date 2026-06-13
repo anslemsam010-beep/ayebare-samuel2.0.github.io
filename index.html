@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayebare Samuel — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0B1120;
+    --navy2:   #111827;
+    --slate:   #1E293B;
+    --border:  #1E293B;
+    --mid:     #334155;
+    --muted:   #64748B;
+    --body:    #94A3B8;
+    --light:   #CBD5E1;
+    --white:   #F1F5F9;
+    --accent:  #3B82F6;
+    --accent2: #1D4ED8;
+    --green:   #10B981;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body:    'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--body);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(11,17,32,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 760px; position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .name-accent { color: var(--accent); }
+
+  .hero-role {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--body);
+    max-width: 540px;
+    margin-bottom: 44px;
+  }
+
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--light);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid var(--mid);
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex; gap: 48px;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 96px 48px; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--body);
+    max-width: 520px;
+    margin-bottom: 56px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--navy2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--body);
+    margin-bottom: 20px;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-text strong { color: var(--light); font-weight: 500; }
+
+  .about-details { display: flex; flex-direction: column; gap: 16px; }
+
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--slate);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .detail-icon {
+    width: 36px; height: 36px;
+    background: rgba(59,130,246,0.12);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .detail-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .detail-value { font-size: 14px; color: var(--light); font-weight: 400; }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .skill-card {
+    padding: 28px 24px;
+    background: var(--navy2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
+
+  .skill-card-icon {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .skill-card h3 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(59,130,246,0.1);
+    color: #93C5FD;
+    border: 1px solid rgba(59,130,246,0.15);
+  }
+
+  /* EDUCATION */
+  #education { background: var(--navy2); }
+
+  .edu-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .edu-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    padding: 28px 32px;
+    background: var(--slate);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: rgba(59,130,246,0.25); }
+
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .edu-year {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 100px;
+  }
+
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .edu-school {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .edu-desc {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.7;
+  }
+
+  .edu-badge {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(16,185,129,0.1);
+    color: #6EE7B7;
+    border: 1px solid rgba(16,185,129,0.2);
+  }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--body);
+    margin-bottom: 36px;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--navy2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    color: var(--light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: rgba(59,130,246,0.1);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* FORM */
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--slate);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted); }
+
+  .form-group textarea { min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy);
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer-copy strong { color: var(--body); font-weight: 400; }
+
+  .footer-back {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-back:hover { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 0 48px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { padding: 100px 24px 64px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 32px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .divider { margin: 0 24px; }
+    .edu-card { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Information Technology Student</div>
+    <h1>Ayebare<br><span class="name-accent">Samuel</span></h1>
+    <p class="hero-role">Software Developer &amp; Network Engineer</p>
+    <p class="hero-desc">
+      Passionate about building reliable software and well-designed networks.
+      Currently studying at Uganda Christian University, turning complex problems
+      into clean, practical solutions.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch →</a>
+      <a href="#skills" class="btn-outline">View my skills</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1<span>+</span></div>
+        <div class="stat-label">Years studying CS</div>
+      </div>
+      <div>
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Labs completed</div>
+      </div>
+      <div>
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Technologies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">About me</div>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a first-year Information Technology student at <strong>Uganda Christian University</strong>,
+          based in Mukono. My interests sit at the intersection of software development
+          and networking — I enjoy understanding how systems work from the ground up,
+          whether that's configuring a VLAN on a Cisco switch or writing a REST API with JWT authentication.
+        </p>
+        <p>
+          I approach every problem with curiosity and a desire to build things that actually work
+          in the real world. I've worked on projects ranging from database design and SQL configuration
+          to full network topology simulations in Packet Tracer.
+        </p>
+        <p>
+          Outside of coursework, I enjoy attending tech events — I recently attended
+          <strong>AgentCon at UCU</strong>, an AI-focused event that deepened my understanding
+          of artificial intelligence, ethical cybersecurity, and responsible AI development.
+        </p>
+      </div>
+      <div class="about-details">
+        <div class="detail-item">
+          <div class="detail-icon">🎓</div>
+          <div>
+            <div class="detail-label">University</div>
+            <div class="detail-value">Uganda Christian University</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">📍</div>
+          <div>
+            <div class="detail-label">Location</div>
+            <div class="detail-value">Kampala, Uganda</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">📚</div>
+          <div>
+            <div class="detail-label">Program</div>
+            <div class="detail-value">BSc Information Technology</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">💼</div>
+          <div>
+            <div class="detail-label">Interests</div>
+            <div class="detail-value">Networking, Software Dev, AI</div>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon">✅</div>
+          <div>
+            <div class="detail-label">Status</div>
+            <div class="detail-value">Open to internships &amp; opportunities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-sub">A mix of software development, database management, and network engineering skills built through coursework and hands-on labs.</p>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🖥️</div>
+        <h3>Programming</h3>
+        <div class="skill-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🗄️</div>
+        <h3>Databases</h3>
+        <div class="skill-tags">
+          <span class="tag">MySQL</span>
+          <span class="tag">SQL DDL/DML</span>
+          <span class="tag">Azure SQL</span>
+          <span class="tag">Constraints</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🌐</div>
+        <h3>Networking</h3>
+        <div class="skill-tags">
+          <span class="tag">Cisco IOS</span>
+          <span class="tag">VLANs</span>
+          <span class="tag">OSPF</span>
+          <span class="tag">SSH/Hardening</span>
+          <span class="tag">Packet Tracer</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🔐</div>
+        <h3>Security</h3>
+        <div class="skill-tags">
+          <span class="tag">JWT Auth</span>
+          <span class="tag">bcrypt</span>
+          <span class="tag">Switch Hardening</span>
+          <span class="tag">SSH</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <h3>Backend Dev</h3>
+        <div class="skill-tags">
+          <span class="tag">Express.js</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Middleware</span>
+          <span class="tag">DHCP</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🛠️</div>
+        <h3>Tools</h3>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">Draw.io</span>
+          <span class="tag">LaTeX</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic background</h2>
+    <p class="section-sub">My formal education journey in computing and technology.</p>
+    <div class="edu-list">
+
+      <div class="edu-card">
+        <div class="edu-year">2025 — Present</div>
+        <div>
+          <div class="edu-degree">BSc Information Technology</div>
+          <div class="edu-school">Uganda Christian University — Mukono</div>
+          <p class="edu-desc">
+            Studying core topics including Local Area Networking, Database Design, Software Engineering,
+            and Introduction to Artificial Intelligence. Completing practical labs in network configuration,
+            switch hardening, VLAN segmentation, and full-stack web development.
+          </p>
+          <span class="edu-badge">Currently enrolled · Year 1</span>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-year">Completed 2024</div>
+        <div>
+          <div class="edu-degree">Uganda Advanced Certificate of Education (UACE)</div>
+          <div class="edu-school">Secondary School — Uganda</div>
+          <p class="edu-desc">
+            Completed A-Level studies with a focus on sciences and mathematics,
+            building the analytical foundation for further study in Information Technology.
+          </p>
+          <span class="edu-badge">Completed</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's connect</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>
+          I'm open to internship opportunities, collaborative projects, and conversations
+          about technology. Whether you have a question, an opportunity, or just want to
+          talk tech — feel free to reach out.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:ayebare.samuel@example.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            ayebare.samuel@example.com
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            LinkedIn — Ayebare Samuel
+          </a>
+          <a href="https://github.com" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            GitHub — @ayebare-samuel
+          </a>
+          <a href="#" class="contact-link">
+            <div class="contact-link-icon">📍</div>
+            Kampala, Uganda
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What would you like to talk about?" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2026 <strong>Ayebare Samuel</strong>. Built with care.</p>
+  <a href="#" class="footer-back">Back to top ↑</a>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Message sent ✓';
+    btn.style.background = '#10B981';
+    setTimeout(() => {
+      btn.textContent = 'Send message →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // Smooth active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#F1F5F9' : '';
+    });
+  });
+</script>
+</body>
+</html>
